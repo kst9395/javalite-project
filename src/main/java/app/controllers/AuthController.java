@@ -11,6 +11,6 @@ public class AuthController extends AppController {
     }
 
     public void index(){
-
+        render().noLayout();
     }
 }

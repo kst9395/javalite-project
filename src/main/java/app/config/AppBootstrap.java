@@ -18,8 +18,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
-import static org.javalite.app_config.AppConfig.p;
-
 public class AppBootstrap extends Bootstrap {
 
     private PublicKey publicKey;
@@ -30,7 +28,7 @@ public class AppBootstrap extends Bootstrap {
     public void init(AppContext appContext) {
 
         try {
-            String loginTokenPublicKeyPath = p(ConfigKey.LOGIN_TOKEN_PUBLIC_KEY_PATH);
+            String loginTokenPublicKeyPath = ApplicationConfig.getLoginTokenPublicKeyPath();
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             String pubKey = Files.readString(Paths.get(loginTokenPublicKeyPath))
                     .replace("-----BEGIN PUBLIC KEY-----", "")
@@ -42,7 +40,7 @@ public class AppBootstrap extends Bootstrap {
             this.publicKey = publicKey;
             appContext.set("login_token_public_key", publicKey);
 
-            String loginTokenPrivateKeyPath = p(ConfigKey.LOGIN_TOKEN_PRIVATE_KEY_PATH);
+            String loginTokenPrivateKeyPath = ApplicationConfig.getLoginTokenPrivateKeyPath();
 
             String privKey = Files.readString(Paths.get(loginTokenPrivateKeyPath))
                     .replace("-----BEGIN PRIVATE KEY-----", "")
