@@ -23,7 +23,7 @@
             </div>
         </nav>
         <div class="is-flex-grow-1">
-            <div class="container">
+            <div class="container is-fullheight">
             ${page_content}
             </div>
         </div>
